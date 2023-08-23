@@ -22,7 +22,7 @@
             <div class="title"><i class='bx bx-code-alt'></i><strong>enter your code here</strong></div>
         </div>
         <div class="textbox form-group">
-            <form method="POST" action="/">
+            <form method="POST" id="code-form">
                 <div class="mb-2">
                     <textarea class="form-control" id="code" name="code" rows="15">{{ code }}</textarea>
                 </div>
@@ -32,10 +32,39 @@
                 </div>
             </form>
             <div class="output">
-                <pre>{{ output }}</pre>
-                <pre class="error">{{ error }}</pre>
+                <pre id="output"> {{ output }} </pre>
+                <pre id="error"> {{ error }} </pre>
             </div>
         </div>
     </div>
 </body>
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+        const codeForm = document.getElementById("code-form");
+        const runButton = document.getElementById("run-button");
+        const outputDiv = document.getElementById("output");
+        const errorDiv = document.getElementById("error");
+
+        runButton.addEventListener("click", function() {
+
+            event.preventDefault();
+
+            const inputCode = document.getElementById("code");
+            const code = inputCode.value;
+
+            //making AJXA request to server
+            const xhr = new XMLHttpRequest();
+            xhr.open("POST", "/", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.onreadystatechange = function() {
+                if(xhr.readyState === 4 && xhr.status === 200) {
+                    const response = JSON.parse(xhr.responseText);
+                    outputDiv.textContent = response.output;
+                    errorDiv.textContent = response.error;
+                }
+            };
+            xhr.send("code=" + encodeURIComponent(code));
+        });
+    });
+</script>
 </html>

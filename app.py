@@ -39,7 +39,7 @@ def index():
         code = request.form.get('code')
         if code:
             output, error = execute_code_safely(code)
-            return render_template('index.html', code=code, output=output, error=error)
+            return jsonify(output=output, error=error)
 
     return render_template('index.html', code='',output='Run to view output', error='')
 
