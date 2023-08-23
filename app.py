@@ -9,7 +9,7 @@ CORS(app)
 def execute_code_safely(code):
     try:
         # Validate code to prevent malicious code injection
-        if re.search(r'(__|eval|exec|import|open|os|sys)', code):
+        if re.search(r'(__|exec|sys)', code):
             raise ValueError("Invalid code detected.")
         
         result = subprocess.run(

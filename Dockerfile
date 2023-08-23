@@ -1,18 +1,12 @@
-# Use a base image with Python
-FROM python:3.10
-
-# Set working directory
+FROM python:3.10-alpine
 WORKDIR /app
 
-# Copy requirements & install dependencies
 COPY requirements.txt .
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy rest of the app's files
-COPY . .
+COPY app.py .
+COPY templates/ templates/
+COPY static/ static/
 
-# Expose port which Gunicorn will use
 EXPOSE 5000
-
-# Run Gunicorn with the Flask app
 CMD ["gunicorn", "-w", "4", "app:app"]
