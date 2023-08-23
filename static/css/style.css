@@ -1,0 +1,51 @@
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.header{
+    margin-top: 5px;
+    margin-right: 5px;
+    margin-left: 5px;
+    height: 60px;
+    background-color: gainsboro;
+}
+.code{
+    margin-top: 5px;
+    margin-right: 5px;
+    margin-left: 5px;
+    /* border: 1px solid gainsboro; */
+}
+.code .title{
+    margin: 5px;
+}
+.code .title i{
+    margin: 5px;
+}
+.textbox{
+    margin-top: 5px;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+.textbox textarea{
+    border-radius: 0px;
+}
+.execute{
+    margin: 0;
+    padding: 0;
+}
+.btn{
+    border-radius: 0;
+    width: 90px;
+}
+.title2{
+    padding-top: 20px;
+}
+.output{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 10px;
+    height: auto;
+    border: 1px solid gainsboro;
+}
