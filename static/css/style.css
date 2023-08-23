@@ -19,6 +19,7 @@
 }
 .code .title{
     margin: 5px;
+    width: 200px;
 }
 .code .title i{
     margin: 5px;
@@ -35,7 +36,7 @@
     margin: 0;
     padding: 0;
 }
-.btn{
+#run-button{
     border-radius: 0;
     width: 90px;
 }
@@ -51,4 +52,13 @@
 }
 #error{
     color: red;
+}
+.input-group select{
+    border-radius: 0px;
+    padding: 2px;
+    height: 25px;
+    margin-top: 5px;
+}
+.input-group option{
+    border-radius: 0px;
 }

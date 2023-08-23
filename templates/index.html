@@ -18,8 +18,15 @@
         <h1 class="text-center">Py Run</h1>
     </div>
     <div class="code">
-        <div class="row d-flex flex-row">
+        <div class="d-flex flex-row">
             <div class="title"><i class='bx bx-code-alt'></i><strong>enter your code here</strong></div>
+            <div class="input-group">
+                <select class="custom-select" id="inputGroupSelect02">
+                  <option selected>Select Language</option>
+                  <option value="1">Python</option>
+                  <option value="2">C++</option>
+                </select>
+              </div> 
         </div>
         <div class="textbox form-group">
             <form method="POST" id="code-form">
@@ -52,7 +59,7 @@
             const inputCode = document.getElementById("code");
             const code = inputCode.value;
 
-            //making AJXA request to server
+            //making AJAX request to server
             const xhr = new XMLHttpRequest();
             xhr.open("POST", "/", true);
             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
