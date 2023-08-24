@@ -12,4 +12,5 @@ COPY templates/ templates/
 COPY static/ static/
 
 EXPOSE 5000
-CMD ["gunicorn", "-w", "4", "app:app"]
+CMD ["gunicorn", "--workers", "1", "--threads", "8", "app:app"]
+
