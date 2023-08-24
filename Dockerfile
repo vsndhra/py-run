@@ -1,5 +1,6 @@
 FROM python:3.10-alpine
-RUN apk add --no-cache g++
+
+RUN apk add --no-cache g++ openjdk11 nodejs
 
 WORKDIR /app
 
