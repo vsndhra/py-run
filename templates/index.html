@@ -21,10 +21,10 @@
         <div class="d-flex flex-row">
             <div class="title"><i class='bx bx-code-alt'></i><strong>enter your code here</strong></div>
             <div class="input-group">
-                <select class="custom-select" id="inputGroupSelect02">
+                <select class="custom-select" id="language">
                   <option selected>Select Language</option>
-                  <option value="1">Python</option>
-                  <option value="2">C++</option>
+                  <option value="python">Python</option>
+                  <option value="cpp">C++</option>
                 </select>
               </div> 
         </div>
@@ -51,6 +51,7 @@
         const runButton = document.getElementById("run-button");
         const outputDiv = document.getElementById("output");
         const errorDiv = document.getElementById("error");
+        const lang = document.getElementById("language");
 
         runButton.addEventListener("click", function() {
 
@@ -58,6 +59,7 @@
 
             const inputCode = document.getElementById("code");
             const code = inputCode.value;
+            const language = lang.value;
 
             //making AJAX request to server
             const xhr = new XMLHttpRequest();
@@ -65,12 +67,13 @@
             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             xhr.onreadystatechange = function() {
                 if(xhr.readyState === 4 && xhr.status === 200) {
+                    console.log(xhr.responseText);
                     const response = JSON.parse(xhr.responseText);
                     outputDiv.textContent = response.output;
                     errorDiv.textContent = response.error;
                 }
             };
-            xhr.send("code=" + encodeURIComponent(code));
+            xhr.send("code=" + encodeURIComponent(code) + "&language=" + encodeURIComponent(language));
         });
     });
 </script>
