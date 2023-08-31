@@ -189,6 +189,38 @@ def run_js(code):
     except Exception as e:
         return "", str(e)
 
+def run_php(code):
+    try:
+        # Write the PHP code to a index file
+        with open('index.php', 'w') as f:
+            f.write(code)
+        # Run PHP script
+        result = subprocess.run(
+            ['php', 'index.php'],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+            timeout=5,
+            check=True 
+        )
+
+        output = result.stdout.strip()
+        error = result.stderr.strip()
+        
+        return output, error
+
+    except subprocess.CalledProcessError as e:
+        return "", "Code execution failed."
+    except subprocess.TimeoutExpired:
+        return "", "Execution timed out."
+    except Exception as e:
+        return "", str(e)
+    finally:
+        try:
+            subprocess.run(['rm', 'index.php'], text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        except:
+            pass
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
@@ -209,6 +241,9 @@ def index():
                 return jsonify(output=output, error=error)
             elif language == "javascript": # Javascript language
                 output, error = run_js(code)
+                return jsonify(output=output, error=error)
+            elif language == "php": # Javascript language
+                output, error = run_php(code)
                 return jsonify(output=output, error=error)
 
     return render_template('index.html',output='Run to view output', error='')
