@@ -4,3 +4,7 @@ lib64/*
 bin/*
 include/*
 lib/*
+set 1.txt
+set 2.txt
+set 3.txt
+locustfile.py
